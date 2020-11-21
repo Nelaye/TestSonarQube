@@ -1,7 +1,6 @@
 language: java
 jdk: oraclejdk11
 
-...
 
 after_deploy:
   - echo "done deploying"
