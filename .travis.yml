@@ -5,6 +5,12 @@ after_deploy:
   - echo "done deploying"
   
   
-env:  
-	global:  
-	- secure: "Yp0z3YbNCtDqualqYYDddVVVlVR7hhw5hY3PwZleYzGUYBQ9Z/Bux+hZsLBIelm6FL+A06arrBpnIj432OyzgiYyOXBp61JmKNqrkKda9vM9xkuf/qBrwlRyxjBq+yuIISJsvNxDIK5i7hEdWcylCiywoS0Vv3HZvxjDlnmzFYSFVEvRTUXkyCHFc0Na+yPb9G0Ajc3qCmZTaNUat1BOGDA1D80KPDQo4lTDdTpYiboVo5yPaTHe7sPdFmE0l8EkqLK9krq+GTeEDf9/yimMowfISkmFy1k/kjmGWszIuNsxHE+spJe/OZFA4JKm1hZ77Mq/AE45YfcEgvbO/pkKRdRW6gb5h8x4l9WMXetS9tf6d2m3jIByQ59K1n/x2FUr2x52crsC+Zt/A0K2uqGcTFvgVRxlKDiUZESXO9KuMyHFVR84qR66xgz563LGVcDlkHhUwUnh0Iq5T30KRyAj42PaP4waRYrept1O4Mhr1j5G/4nHOjMwi+YIFjhXBGvA+X8J9vg1IBJMjhjFEOVkriJfGVUM6ENd0z6AekRPCcaSKzGc7E0Qqro7wu/TUSLXufVQau8hTYKu7NctwL7H6k6BAmIj9vr1hNIaYpZlu5CvGQqK5zIGCHys0KweHgO9seu6CIEdHDqwUq8AjznJ92VYIGC/x+3rbqouft0Ouho="
+addons:
+  sonarcloud:
+    organization: "nelaye"
+    token:
+      secure: "ABQny45f4E4gPrA58loBswa8I/F+SSXnWbBsL79k/AzIfD0CsCGn4R5ywmU8yLIB0wWzfKPAOzpP0OxqGEOpnAFvqXMgVXysNMRqENY3M7uQOIszWJSQyBSpTYxcpZg/thaCL/uXkKAln3P/daaEw9W2FGuHqJFHCuvbQeqvucrx7gfi2pflKg1hH/gjnuUs2R27dRNDJA3BN8L4LeWPBTsGOZ+SFNxAR257HmwBD0xrQKU2t01q6Z+5nkI1Cj9439iA3/f+vKovSY3SwjeLydI9yc/VzZgU68qUx48Qtwxb138nl+uIqL2YrL2L2SbuCdY2JS0DXNFimG8J1BAMoWFR8SFQeEtvutRohvQqZm2/YvXWathLZZi+b3Q1w+3/7iXgeVlDsiCv4zH58blDLisz4evLZMPMg6MfQSS5RkQjVUO5ME6Ov2FBaTCFwzz2naxNvo5gOdI2Z8mfsPAhYG6BaRASlEo/y3JLcG5UuzFj9dyrYPHPYaqfSx582EKCQF2LYxRe+Zrnri12xPNy3Ew+jG/MzfNxsqKl6wv1xLUNHo/+L1/FVRdDduesgcnIreKioWEuhErZUq2PlNpjDw3aac1H/XC/HrAxOMC4ruupguYoF7Mv+QDXmdQ+C698Cgs99CyP7WWrxnGRmzvQ3emXlfj8vDA0E4qCGp6Jzsk=" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
